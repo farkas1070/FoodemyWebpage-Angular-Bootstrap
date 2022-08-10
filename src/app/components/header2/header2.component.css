@@ -1,19 +1,26 @@
 .bg {
     /* The image used */
-    background-image: url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80');
+    
     /* Full height */
-    height: 55rem;
+    
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    
+    
+    font-weight: bold;
+    padding: 80px;
+
+
+
     
 }
 .secondbg {
     
     
     /* Center and scale the image nicely */
-    text-align: center;
+    
     font-weight: bold;
     padding: 80px;
 }
