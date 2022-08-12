@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -12,6 +11,15 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from './components/button/button.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { HomebottomComponent } from './components/homebottom/homebottom.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoute: Routes = [
+  { path: '', component: HomeComponent},
+  { path: 'Home', component: HomeComponent },
+  { path: 'Login', component: LoginComponent },
+
+]
 
 @NgModule({
   declarations: [
@@ -24,11 +32,13 @@ import { HomeComponent } from './components/home/home.component';
     FooterComponent,
     ButtonComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    HomebottomComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot(appRoute)
   ],
   providers: [],
   bootstrap: [AppComponent]
