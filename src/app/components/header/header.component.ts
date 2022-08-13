@@ -26,5 +26,8 @@ export class HeaderComponent implements OnInit {
   navigateToContact() {
     this.route.navigate(['Contact'])
   }
+  navigateToHome() {
+    this.route.navigate(['Home'])
+  }
 
 }
