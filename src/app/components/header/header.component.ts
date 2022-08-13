@@ -1,4 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,20 +11,20 @@ export class HeaderComponent implements OnInit {
 
   title: string = 'my-app';
   
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
 
   
-  onClick2() {
-    console.log("Add2");
+  navigateToLogin() {
+    this.route.navigate(['Login'])
   }
-  onClick3() {
-    console.log("Add3");
+  navigateToAbout() {
+    this.route.navigate(['About'])
   }
-  toggleAddTask() {
-    console.log("toggle");
+  navigateToContact() {
+    this.route.navigate(['Contact'])
   }
 
 }
