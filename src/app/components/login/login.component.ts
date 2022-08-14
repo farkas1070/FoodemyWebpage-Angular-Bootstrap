@@ -16,5 +16,8 @@ export class LoginComponent implements OnInit {
   navigateToLogin() {
     this.route.navigate(['login']);
   }
+  navigateToProducts() {
+    this.route.navigate(['Products']);
+  }
 
 }
