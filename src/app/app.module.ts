@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HomebottomComponent } from './components/homebottom/homebottom.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './components/products/products.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent},
@@ -22,6 +23,7 @@ const appRoute: Routes = [
   { path: 'About', component: Informationalsection2Component },
   { path: 'Contact', component: Informationalsection1Component },
   { path: 'Products', component: ProductsComponent },
+  { path: 'Cart', component: CartComponent },
 
 ]
 
@@ -38,7 +40,8 @@ const appRoute: Routes = [
     LoginComponent,
     HomeComponent,
     HomebottomComponent,
-    ProductsComponent
+    ProductsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
