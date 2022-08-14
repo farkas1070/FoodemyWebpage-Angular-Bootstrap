@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit {
       price: 23,
       kcal: 203,
       healthy: false,
+      url: "https://images.unsplash.com/photo-1550317138-10000687a72b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1820&q=80"
       
     },
     {
@@ -21,6 +22,7 @@ export class ProductsComponent implements OnInit {
       price: 23,
       kcal: 203,
       healthy: false,
+      url: "https://images.unsplash.com/photo-1550317138-10000687a72b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1820&q=80"
       
     },
     {
@@ -28,6 +30,7 @@ export class ProductsComponent implements OnInit {
       price: 23,
       kcal: 203,
       healthy: false,
+      url: "https://images.unsplash.com/photo-1550317138-10000687a72b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1820&q=80"
       
     },
     {
@@ -35,6 +38,7 @@ export class ProductsComponent implements OnInit {
       price: 23,
       kcal: 203,
       healthy: false,
+      url: "https://images.unsplash.com/photo-1550317138-10000687a72b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1820&q=80"
       
     },
     {
@@ -42,6 +46,7 @@ export class ProductsComponent implements OnInit {
       price: 23,
       kcal: 203,
       healthy: false,
+      url: "https://images.unsplash.com/photo-1550317138-10000687a72b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1820&q=80"
       
     }
   ]
