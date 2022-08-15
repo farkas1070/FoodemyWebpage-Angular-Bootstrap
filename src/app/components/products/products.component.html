@@ -102,10 +102,13 @@
                         <img class="card-img-top img-fluid"
                           src={{food.url}}
                           alt="Card image cap">
-                        <div class="card-block">
+                        <div class="card-block" style="display: flex; justify-content:space-between">
+                          <div>
                           <h4 class="card-title">{{food.name}}</h4>
                           <p class="card-text">KCAL: {{food.kcal}}</p>
                           <p class="card-text">{{food.price}} $</p>
+                        </div>
+                        <div style="display: flex; justify-content:center; align-items:center"><i class="bi bi-plus"></i></div>
                         </div>
                       </div>
                     </div>
