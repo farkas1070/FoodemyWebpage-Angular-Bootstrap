@@ -10,18 +10,27 @@ import { ApiserviceService } from 'src/app/apiservice.service';
 export class ProductsComponent implements OnInit {
 
   foodData:any;
-  
+  searchText:string = '';
   
   constructor(private route:Router,private service:ApiserviceService) { }
-
+ 
   ngOnInit(): void {
     this.service.getAllFoodData().subscribe((result) => {
       console.log(result,"result")
       this.foodData = result.data;
     })
   }
+
   navigateToCart() {
     this.route.navigate(['Cart'])
+  }
+  onSearchTextEntered(searchValue:string) {
+    this.searchText = searchValue;
+    console.log(this.searchText);
+
+  }
+  addToCart() {
+    
   }
 
 }

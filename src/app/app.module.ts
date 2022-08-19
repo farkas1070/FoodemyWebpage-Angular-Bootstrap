@@ -15,11 +15,12 @@ import { HomebottomComponent } from './components/homebottom/homebottom.componen
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './components/products/products.component';
 import { CartComponent } from './components/cart/cart.component';
-import { CreateComponent } from './create/create.component';
+import { SearchComponent } from './search/search.component';
 import { ReadComponent } from './read/read.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ApiserviceService } from './apiservice.service';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';"@angular/forms"
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+
 const appRoute: Routes = [
   { path: '', component: HomeComponent},
   { path: 'Home', component: HomeComponent },
@@ -46,7 +47,7 @@ const appRoute: Routes = [
     HomebottomComponent,
     ProductsComponent,
     CartComponent,
-    CreateComponent,
+    SearchComponent,
     ReadComponent
 
   ],

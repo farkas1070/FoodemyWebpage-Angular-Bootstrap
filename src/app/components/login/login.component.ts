@@ -44,6 +44,6 @@ export class LoginComponent implements OnInit {
   navigateToLogin() {
     this.route.navigate(['login']);
   }
-  
+   
 
 }

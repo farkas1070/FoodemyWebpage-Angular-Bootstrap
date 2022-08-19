@@ -60,6 +60,23 @@ app.get('/food', (req, res) => {
         }
     })
 })
+// get specific type of food
+app.get('/food/:foodtype', (req, res) => {
+    let gFT = req.params.foodtype
+    let qr = `select * from user where id = ${gFT}`;
+
+    db.query(qr,(err,result) => {
+        if(err) {
+            console.log(err,'errs');
+        }
+        if(result.length >0) {
+            res.send({
+                message: 'all food with specifc type',
+                data: result
+            })
+        }
+    })
+})
 //get single data from Database
 
 app.get('/user/:id',(req,res)=>{

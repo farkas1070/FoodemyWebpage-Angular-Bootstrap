@@ -76,10 +76,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <form class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
           </ul>
           <form class="navbar-nav ms-auto mb-2 mb-lg-0">
             <button class="nav-item bg-light" type="button" style="border-style: none;" (click)="navigateToCart()"><i
@@ -91,14 +88,15 @@
         <div class="padding " >
           <div class="">
 
-            <div >
+            <div >   
               <!-- Draggable Without Images card start -->
               <div class="card">
                 
                 <div class="card-block">
                   <div class="row">
-                    <div class="col-md-6" *ngFor="let food of foodData">
-                      <div class="card-sub m-b-20">
+                    <ng-container  *ngFor="let food of foodData">
+                    <div class="col-md-6" *ngIf="searchText === '' || food.foodname.toLowerCase().includes(searchText)">
+                      <div class="card-sub m-b-20" >
                         <img class="card-img-top img-fluid"
                           src={{food.url}}
                           alt="Card image cap">
@@ -108,14 +106,16 @@
                           <p class="card-text">KCAL: {{food.kcalories}}</p>
                           <p class="card-text">{{food.price}} $</p>
                         </div>
-                        <div style="display: flex; justify-content:center; align-items:center"><i class="bi bi-plus"></i></div>
+                        <div style="display: flex; justify-content:center; align-items:center" ><button class="nav-item bg-dark" type="button" style="border-style: none;  border-radius: 10px; width: 40px;height:40px" (click)="addToCart()"><i class="bi bi-plus" style="color: white" ></i></button></div>
                         </div>
                       </div>
-                    </div>
-
+                    
                     
                   </div>
+                </ng-container>
+                  </div>
                 </div>
+              
               </div>
               <!-- Draggable Without Images card end -->
             </div>
