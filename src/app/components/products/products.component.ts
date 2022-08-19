@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiserviceService } from 'src/app/apiservice.service';
 
 @Component({
   selector: 'app-products',
@@ -8,122 +9,16 @@ import { Router } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
 
-  public foodlist = [
-    
-    {
-      productid: 1,
-      name: 'Pizza',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-      
-    },
-    {
-      productid: 2,
-      name: 'Salad',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-      
-    },
-    {
-      productid: 3,
-      name: 'Coca Cola',
-      price: 1.5,
-      kcal: 75,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1562952546-12992a813a51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    },
-    {
-      productid: 4,
-      name: 'Carbonara',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    },
-    {
-      productid: 5,
-      name: 'Carbonara',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    },
-    {
-      productid: 6,
-      name: 'Carbonara',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    },
-    {
-      productid: 7,
-      name: 'Carbonara',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    },
-    {
-      productid: 8,
-      name: 'Carbonara',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    },
-    {
-      productid: 9,
-      name: 'Carbonara',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    },
-    {
-      productid: 10,
-      name: 'Carbonara',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    },
-    {
-      productid: 11,
-      name: 'Carbonara',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    },
-    {
-      productid: 12,
-      name: 'Carbonara',
-      price: 23,
-      kcal: 203,
-      healthy: false,
-      url: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-      
-    }
-  ]
+  foodData:any;
   
   
-  constructor(private route:Router) { }
+  constructor(private route:Router,private service:ApiserviceService) { }
 
   ngOnInit(): void {
+    this.service.getAllFoodData().subscribe((result) => {
+      console.log(result,"result")
+      this.foodData = result.data;
+    })
   }
   navigateToCart() {
     this.route.navigate(['Cart'])
