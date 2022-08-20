@@ -71,23 +71,27 @@
     </div>
     <div class="overflow-auto" style=" height:95vh; width: 100%; ">
       <nav class="navbar navbar-expand-lg navbar-light bg-light " style=" padding: 20px;">
-        <a class="navbar-brand" href="#">Navbar</a>
+        
 
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+          
           <ul class="navbar-nav mr-auto">
             <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
           </ul>
           <form class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <button class="nav-item bg-light" type="button" style="border-style: none;" (click)="navigateToCart()"><i
-                class="bi bi-cart " style="width: 30px; height:30px"></i></button>
+            <button class="btn btn-primary bg-dark" type="button" style="border-style: none; border-radius: 10px;" (click)="navigateToCart()">
+              <i class="bi bi-cart " style="font-size: 20px; color: white">
+                <span class="badge badge-pill badge-light" >0</span>
+              </i>
+            </button>
+
           </form>
         </div>
       </nav>
       <div class="height-100 " >
         <div class="padding " >
-          <div class="">
-
+          <div >
             <div >   
               <!-- Draggable Without Images card start -->
               <div class="card">
@@ -99,7 +103,8 @@
                       <div class="card-sub m-b-20" >
                         <img class="card-img-top img-fluid"
                           src={{food.url}}
-                          alt="Card image cap">
+                          alt="Card image cap"
+                          height="150px">
                         <div class="card-block" style="display: flex; justify-content:space-between">
                           <div>
                           <h4 class="card-title">{{food.foodname}}</h4>

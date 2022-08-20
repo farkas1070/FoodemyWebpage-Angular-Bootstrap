@@ -1,4 +1,4 @@
-<div>
-    <span></span>
-    <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()">
-</div>
+
+<label for="exampleInputEmail1" style="margin-left: 5px;margin-bottom: 5px;">Products</label>
+<input type="text" class="form-control" id="exampleInputEmail1"  placeholder="Search for products..." [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()" style="width: 100%;">
+
