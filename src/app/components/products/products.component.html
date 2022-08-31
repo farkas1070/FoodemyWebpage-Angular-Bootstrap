@@ -1,93 +1,86 @@
 <app-header></app-header>
 <div>
   <div class="container d-flex ">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style=" height:96vh; width:15vh ">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-          <use xlink:href="#bootstrap" />
-        </svg>
-        <span class="fs-4">Filters</span>
-      </a>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="#" class="nav-link" aria-current="page">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#home" />
-            </svg>
-            Pizzas
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#speedometer2" />
-            </svg>
-            Hamburgers
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#table" />
-            </svg>
-            Pastas
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#grid" />
-            </svg>
-            Salads
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#people-circle" />
-            </svg>
-            Desserts
-          </a>
-        </li>
-      </ul>
-      <hr>
-      <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong>mdo</strong>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-          <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="overflow-auto" style=" height:95vh; width: 100%; ">
+    
+    <div class="overflow-auto" style="  width: 100%; ">
       <nav class="navbar navbar-expand-lg navbar-light bg-light " style=" padding: 20px;">
-        
-
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2"
+          aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent2" >
           
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav mb-2 mb-lg-0">
             <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+            
           </ul>
-          <form class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <button class="btn btn-primary bg-dark" type="button" style="border-style: none; border-radius: 10px;" (click)="navigateToCart()">
-              <i class="bi bi-cart " style="font-size: 20px; color: white">
-                <span class="badge badge-pill badge-light" >0</span>
-              </i>
-            </button>
+          <ul class=" navbar-nav nav-pills ms-auto mb-2 mb-lg-0 ">
+            <li >
+              <button class="  nav-item btn bg-light " type="button" style=" border-radius: 10px;margin-left: 10px;margin-right: 10px;" (click)="getOriginalArray()">
+                
+                  <span class="badge badge-pill badge-light text-dark" >All</span>
+                
+              </button>
+            </li>
+            <li >
+              <button class=" nav-item btn  bg-light " type="button" style=" border-radius: 10px;margin-left: 10px;margin-right: 10px;" (click)="filterProducts('Pizza')">
+                
+                  <span class="badge badge-pill badge-light text-dark" >Pizzas</span>
+                
+              </button>
+            </li>
+            <li>
+              <button class="nav-item btn bg-light" type="button" style=" border-radius: 10px;margin-left: 10px;margin-right: 10px;" (click)="filterProducts('Salad')">
+                
+                  <span class="badge badge-pill badge-light text-dark" >Salads</span>
+                
+              </button>
+            </li>
+            <li>
+              <button class="nav-item btn  bg-light" type="button" style=" border-radius: 10px;margin-left: 10px;margin-right: 10px;" (click)="filterProducts('Burger')">
+                
+                  <span class="badge badge-pill badge-light text-dark" >Burgers</span>
+                
+              </button>
+            </li>
+            <li>
+              <button class="nav-item btn  bg-light " type="button" style=" border-radius: 10px;margin-left: 10px;margin-right: 10px;" (click)="filterProducts('Drink')">
+                
+                  <span class="badge badge-pill badge-light text-dark " >Drinks</span>
+                
+              </button>
+            </li>
+            <li>
+              <button class="nav-item btn  bg-light " type="button" style=" border-radius: 10px;margin-left: 10px;margin-right: 10px;" (click)="filterProducts('Dessert')">
+                
+                  <span class="badge badge-pill badge-light text-dark" >Desserts</span>
+                
+              </button>
+            </li>
+            <li>
+              <button class="nav-item btn bg-light " type="button" style=" border-radius: 10px;margin-left: 10px;margin-right: 10px;" (click)="filterProducts('Ready Meal')">
+                
+                  <span class="badge badge-pill badge-light text-dark" >Ready Meals</span>
+                
+              </button>
+            </li>
+            <li>
+              <button class="nav-item btn  bg-light " type="button" style=" border-radius: 10px;" (click)="filterProducts('Pasta')">
+                
+                  <span class="badge badge-pill badge-light text-dark" >Pastas</span>
+                
+              </button>
+            </li>
+          </ul>
+          <form class="ms-auto mb-2 mb-lg-0">
+            
 
           </form>
         </div>
+        <button class="nav-item btn  bg-light" type="button" style=" border-radius: 10px;" (click)="navigateToCart()">
+          <i class="bi bi-cart " style="font-size: 20px;margin-left: 5px; color: black">
+            <span class="badge badge-pill badge-light text-dark" >0</span>
+          </i>
+        </button>
       </nav>
       <div class="height-100 " >
         <div class="padding " >
@@ -98,26 +91,47 @@
                 
                 <div class="card-block">
                   <div class="row">
-                    <ng-container  *ngFor="let food of foodData">
+                    <ng-container  *ngFor="let food of foodData; index as i">
+                      <ng-container *ngIf="i >= lowerindex && i <= higherindex -1">
                     <div class="col-md-6" *ngIf="searchText === '' || food.foodname.toLowerCase().includes(searchText)">
                       <div class="card-sub m-b-20" >
                         <img class="card-img-top img-fluid"
                           src={{food.url}}
                           alt="Card image cap"
-                          height="150px">
+                          height="200px">
                         <div class="card-block" style="display: flex; justify-content:space-between">
                           <div>
                           <h4 class="card-title">{{food.foodname}}</h4>
                           <p class="card-text">KCAL: {{food.kcalories}}</p>
                           <p class="card-text">{{food.price}} $</p>
+                          
                         </div>
-                        <div style="display: flex; justify-content:center; align-items:center" ><button class="nav-item bg-dark" type="button" style="border-style: none;  border-radius: 10px; width: 40px;height:40px" (click)="addToCart()"><i class="bi bi-plus" style="color: white" ></i></button></div>
+                        <div style="display: flex; justify-content:center; align-items:center" ><button class="nav-item bg-dark" type="button" style="border-style: none;  border-radius: 10px; width: 40px;height:40px" (click)="addToCart(food)"><i class="bi bi-plus" style="color: white" ></i></button></div>
                         </div>
                       </div>
                     
                     
                   </div>
                 </ng-container>
+              </ng-container>
+                  </div>
+                  <div class="container" style="display: flex; justify-content: center; align-items: center">
+                  <ul class="navbar nav" style="margin-top:20px; margin-bottom:20px">
+                    <li class="nav-item" style="margin-left:20px; margin-right:20px;">
+                      <button class="btn" type="button"  [disabled]="lowerindex <= 0" (click)="turnPageBackward()">
+                      <i class="bi bi-caret-left-fill" style="font-size: 30px"></i>
+                      </button>
+                    </li>
+                    <li class="nav-item" style="margin-left:20px; margin-right:20px; margin-top:10px">
+                      <p style="font-size: 30px">0</p>
+                    </li>
+                    <li class="nav-item" style="margin-left:20px; margin-right:20px;">
+                      <button class="btn" type="button" [disabled]="higherindex > foodDatalength" (click)="turnPageForward()">
+                      <i class="bi bi-caret-right-fill" style="font-size: 30px"></i>
+                    </button>
+                    </li>
+
+                  </ul>
                   </div>
                 </div>
               
@@ -129,8 +143,10 @@
           </div>
         </div>
       </div>
+      
     </div>
 
 
   </div>
+  
 </div>

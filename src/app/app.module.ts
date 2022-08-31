@@ -21,6 +21,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { ApiserviceService } from './apiservice.service';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
+
 const appRoute: Routes = [
   { path: '', component: HomeComponent},
   { path: 'Home', component: HomeComponent },
@@ -58,6 +59,7 @@ const appRoute: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+    
   ],
   providers: [ApiserviceService],
   bootstrap: [AppComponent]

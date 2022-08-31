@@ -17,7 +17,7 @@ export class Informationalsection1Component implements OnInit {
   userForm = new FormGroup({
     'fullname': new FormControl('',Validators.required),
     'email': new FormControl('',Validators.required),
-    'mobile': new FormControl('',Validators.required)
+    'password': new FormControl('',Validators.required)
   });
 
   userSubmit() {
@@ -27,6 +27,9 @@ export class Informationalsection1Component implements OnInit {
         console.log(result,"res --->")
         if (result.message == "user already exists") {
           this.errormsg = "user already exists"
+        }
+        if (result.message == "Account Created") {
+          this.errormsg = "Account Created!"
         }
         
       })
