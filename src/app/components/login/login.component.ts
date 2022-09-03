@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {NgForm,FormControl, FormGroup, Validators} from "@angular/forms"
 import { ApiserviceService } from 'src/app/apiservice.service'; 
+import { SharedService } from "../../shared.service";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,14 +11,15 @@ import { ApiserviceService } from 'src/app/apiservice.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private route: Router, private service: ApiserviceService) { }
+  constructor(private route: Router, private service: ApiserviceService, private sharedService: SharedService) { }
   userlist: any
   errormsg: any
-
+  loggedinuser:object;
+  currentuser: any
   ngOnInit(): void {
     this.service.getAllUserData().subscribe((result) => {
       this.userlist = result.data
-      
+      this.sharedService.sharedMessage.subscribe(message => this.loggedinuser = message)
     })
   }
   userForm = new FormGroup({
@@ -36,8 +39,11 @@ export class LoginComponent implements OnInit {
         this.errormsg = "Wrong password, try again"
       }
       if (result.token) {
+        localStorage.setItem("token", result.token);
+        console.log(result.data)
         
         console.log(result)
+        this.newMessage(result.data)
         this.route.navigate(['Products']);
       }
       else {
@@ -50,6 +56,8 @@ export class LoginComponent implements OnInit {
   navigateToLogin() {
     this.route.navigate(['Contact']);
   }
-   
+  newMessage(something:any) {
+    this.sharedService.nextMessage(something)
+  }
 
 }

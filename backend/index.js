@@ -4,13 +4,19 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser')
+
 
 const app = express();
 app.use(cors());
 app.use(bodyparser.json());
+app.use(cookieParser())
 const TOKEN_SECRET = 'some very secret text'
 
+
 // database connection
+
+
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -19,6 +25,7 @@ const db = mysql.createConnection({
     database: 'foodemy',
     port: 3306
 });
+
 
 /// check database connection
 
@@ -30,7 +37,7 @@ const db = mysql.createConnection({
 
 // get all users
 
-app.get('/user', async function(req, res) {
+app.get('/alluser', async function(req, res) {
     let qr = `select * from user`;
 
     db.query(qr,(err,result) => {
@@ -81,9 +88,9 @@ app.get('/food/:foodtype', async function(req, res) {
 })
 //get single data from Database
 
-app.get('/user/:id', async function(req, res){
-    let gID = req.params.id
-    let qr = `select * from user where id = ${gID}`;
+app.get('/user', async function(req, res){
+    
+    let qr = `select * from user where id = ${req.user.id}`;
     db.query(qr,(err,result)=>{
 
         if(err){
@@ -162,7 +169,7 @@ app.post('/userlogin', async function(req, res,next){
                         data: result
                     })
                   } else {
-                    bcrypt.compare(pass, user.password,function(err, result) {
+                    bcrypt.compare(pass, user.password,async function(err, result) {
                         if (err){
                             console.log(err)
                           res.json({message:"wrong password",
@@ -170,10 +177,12 @@ app.post('/userlogin', async function(req, res,next){
                         }
                         if (result ==true){
                             console.log(result);
-                            const token =  jwt.sign({ userId: user.id }, TOKEN_SECRET, {
+                            const token =  await jwt.sign({ userId: user.id }, TOKEN_SECRET, {
                                 expiresIn: '10h',
                               })
-                            res.json({ data: result, token: token , message:"login succesful"});
+                            
+                            res.cookie('auth', token, { httpOnly: true })
+                            res.json({ data: user, token: token , message:"login succesful"});
                         } 
                         if (result ==false) {
                             console.log(result)

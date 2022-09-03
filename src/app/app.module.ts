@@ -20,7 +20,9 @@ import { ReadComponent } from './read/read.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ApiserviceService } from './apiservice.service';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-
+import { ProfileComponent } from './components/profile/profile.component';
+import {CookieService} from 'ngx-cookie-service';
+import { SharedService } from './shared.service';
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent},
@@ -30,6 +32,7 @@ const appRoute: Routes = [
   { path: 'Contact', component: Informationalsection1Component },
   { path: 'Products', component: ProductsComponent },
   { path: 'Cart', component: CartComponent },
+  { path: 'Profile', component: ProfileComponent },
 
 ]
 
@@ -61,7 +64,7 @@ const appRoute: Routes = [
     ReactiveFormsModule
     
   ],
-  providers: [ApiserviceService],
+  providers: [ApiserviceService,CookieService,SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,7 +17,11 @@ export class ApiserviceService {
 
   getAllUserData():Observable<any> 
   {
-    return this.http.get("http://localhost:3000/user")
+    return this.http.get("http://localhost:3000/alluser")
+  }
+  getSingleUserData(   ):Observable<any> 
+  {
+    return this.http.get(`http://localhost:3000/user/`)
   }
   getAllFoodData():Observable<any> 
   {

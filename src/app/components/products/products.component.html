@@ -1,4 +1,26 @@
-<app-header></app-header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+  <div class="container">
+    <button class="navbar-nav nav-item bg-dark" type="button" style="border-style: none;" (click)="navigateToHome()"><a
+      class="nav-link" aria-current="page">Foodemy</a></button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+        class="navbar-toggler-icon"></span></button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+        <button class="nav-item bg-dark" type="button" style="border-style: none;" (click)="navigateToHome()"><a
+            class="nav-link" aria-current="page">Logout</a></button>
+
+        
+
+        <button class="nav-item bg-dark" type="button" style="border-style: none;" (click)="navigateToProfile()" ><img class="avatar avatar-16 bg-light rounded-circle text-white p-1"
+          src="https://raw.githubusercontent.com/twbs/icons/main/icons/person.svg"></button>
+
+        <!-- This is the top navigation bar (will need renaming)-->
+      </ul>
+    </div>
+  </div>
+</nav>
 <div>
   <div class="container d-flex ">
     
@@ -78,7 +100,7 @@
         </div>
         <button class="nav-item btn  bg-light" type="button" style=" border-radius: 10px;" (click)="navigateToCart()">
           <i class="bi bi-cart " style="font-size: 20px;margin-left: 5px; color: black">
-            <span class="badge badge-pill badge-light text-dark" >0</span>
+            <span class="badge badge-pill badge-light text-dark" >{{this.cartlist.length}}</span>
           </i>
         </button>
       </nav>

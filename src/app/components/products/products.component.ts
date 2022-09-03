@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/apiservice.service';
+import { SharedService } from "../../shared.service";
 
 @Component({
   selector: 'app-products',
@@ -8,15 +9,16 @@ import { ApiserviceService } from 'src/app/apiservice.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-
+  
   foodData:any;
   originalData:any;
   foodDatalength:number;
   lowerindex:number = 0;
   higherindex:number = 10;
   searchText:string = '';
-  
-  constructor(private route:Router,private service:ApiserviceService) { }
+  cartlist: any
+
+  constructor(private route:Router,private service:ApiserviceService, private sharedService: SharedService) { }
  
   ngOnInit(): void {
     this.service.getAllFoodData().subscribe((result) => {
@@ -25,6 +27,8 @@ export class ProductsComponent implements OnInit {
       this.originalData = result.data;
       this.foodDatalength = this.foodData.length
     })
+    this.sharedService.sharedUserCart.subscribe(message => this.cartlist = message)
+      console.log(this.cartlist)
   }
 
   navigateToCart() {
@@ -36,7 +40,9 @@ export class ProductsComponent implements OnInit {
 
   }
   addToCart(i:any) {
-    console.log(i)
+    this.cartlist.push(i)
+    localStorage.setItem('cartlist', JSON.stringify(this.cartlist))
+    console.log(this.cartlist)
     
   }
   filterProducts(type:string) {
@@ -57,6 +63,12 @@ export class ProductsComponent implements OnInit {
     this.lowerindex -= 10;
     this.higherindex -= 10;
     window.scroll(0,0);
+  }
+  navigateToHome(){
+    this.route.navigate(['Home'])
+  }
+  navigateToProfile(){
+    this.route.navigate(['Profile'])
   }
 
 }
