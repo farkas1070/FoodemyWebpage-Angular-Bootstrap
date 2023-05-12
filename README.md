@@ -1,11 +1,11 @@
 # MyApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
+Foodemy webpage made with Angular JS and Node JS with MySQL az database.
 ![Alt_text](https://i.imgur.com/qu5bHic.jpg)
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
+![Alt_text](https://i.imgur.com/haVq5JY.jpg)
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
