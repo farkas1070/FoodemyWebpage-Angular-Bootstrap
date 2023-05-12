@@ -8,7 +8,7 @@ Still need some bug fixes, and design changes but otherwise fully done
 
 Stile made with Bootstrap
 ![Alt_text](https://i.imgur.com/R5vMixM.jpg)
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
 
 some more screenshots:
 ![Alt_text](https://i.imgur.com/3JPGuIC.jpg)
