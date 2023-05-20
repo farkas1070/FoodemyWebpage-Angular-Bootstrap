@@ -23,6 +23,8 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import {CookieService} from 'ngx-cookie-service';
 import { SharedService } from './shared.service';
+import { InterceptorService } from './interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent},
@@ -64,7 +66,9 @@ const appRoute: Routes = [
     ReactiveFormsModule
     
   ],
-  providers: [ApiserviceService,CookieService,SharedService],
+  providers: [ApiserviceService,CookieService,SharedService,{provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,14 +19,21 @@ export class ApiserviceService {
   {
     return this.http.get("http://localhost:3000/alluser")
   }
-  getSingleUserData(   ):Observable<any> 
+  addToCart(data:any):Observable<any> 
   {
-    return this.http.get(`http://localhost:3000/user/`)
+    
+    return this.http.post(`http://localhost:3000/cart`,data)
   }
   getAllFoodData():Observable<any> 
   {
     return this.http.get("http://localhost:3000/food")
   }
+  getAllCartData(data:any):Observable<any> 
+  {
+    
+    return this.http.get(`http://localhost:3000/usercart?id=${data.id}`);
+  }
+
   createUser(data:any):Observable<any> 
   {
     console.log(data,"createapi-->")
@@ -34,7 +41,11 @@ export class ApiserviceService {
   }
   loginUser(data:any):Observable<any> 
   {
-    return this.http.post("http://localhost:3000/userlogin",data)
+    var reqHeader = new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + "valami"
+   });
+    return this.http.post("http://localhost:3000/userlogin",data,{ headers: reqHeader })
   }
 
 }

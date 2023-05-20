@@ -16,7 +16,9 @@ export class ProductsComponent implements OnInit {
   lowerindex:number = 0;
   higherindex:number = 10;
   searchText:string = '';
-  cartlist: any
+  currentuserid:number;
+  userdata:any
+  cartlist:any =[]
 
   constructor(private route:Router,private service:ApiserviceService, private sharedService: SharedService) { }
  
@@ -27,9 +29,22 @@ export class ProductsComponent implements OnInit {
       this.originalData = result.data;
       this.foodDatalength = this.foodData.length
     })
-    this.sharedService.sharedUserCart.subscribe(message => this.cartlist = message)
-      console.log(this.cartlist)
+    
+    
+    this.sharedService.sharedUserInfo.subscribe(message2 => this.userdata = message2)
+      console.log(this.userdata)
+      
+    
+      
+    this.service.getAllCartData(this.userdata).subscribe((result) => {
+        console.log(result,"userdata")
+        this.cartlist = result.data
+        
+      })
+    
+      
   }
+  
 
   navigateToCart() {
     this.route.navigate(['Cart'])
@@ -39,10 +54,22 @@ export class ProductsComponent implements OnInit {
     console.log(this.searchText);
 
   }
-  addToCart(i:any) {
-    this.cartlist.push(i)
-    localStorage.setItem('cartlist', JSON.stringify(this.cartlist))
-    console.log(this.cartlist)
+  addToCart(food:any) {
+    
+    let data = {
+      Foodid:food.foodid,
+      Userid: this.userdata.id
+
+    }
+
+    this.service.addToCart(data).subscribe((result)=>{
+      console.log(data)
+      console.log(result,"res --->")
+    })
+    
+    
+    
+    
     
   }
   filterProducts(type:string) {

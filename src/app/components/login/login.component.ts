@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {NgForm,FormControl, FormGroup, Validators} from "@angular/forms"
 import { ApiserviceService } from 'src/app/apiservice.service'; 
 import { SharedService } from "../../shared.service";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { SharedService } from "../../shared.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private route: Router, private service: ApiserviceService, private sharedService: SharedService) { }
+  constructor(private route: Router, private service: ApiserviceService, private sharedService: SharedService,private cookieService: CookieService) { }
   userlist: any
   errormsg: any
   loggedinuser:object;
@@ -40,10 +41,17 @@ export class LoginComponent implements OnInit {
       }
       if (result.token) {
         localStorage.setItem("token", result.token);
-        console.log(result.data)
+        this.cookieService.set( 'auth', result.token );
         
+        
+        delete result.data.password
+        
+        localStorage.setItem("user", JSON.stringify(result.data));
         console.log(result)
+        
+        
         this.newMessage(result.data)
+        
         this.route.navigate(['Products']);
       }
       else {

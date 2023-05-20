@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   constructor(private service:ApiserviceService, private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.sharedService.sharedMessage.subscribe(message => this.user = message)
+    this.sharedService.sharedUserInfo.subscribe(message => this.user = message)
       console.log(this.user)
   }
 

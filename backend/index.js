@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser')
 const app = express();
 app.use(cors());
 app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookieParser())
 const TOKEN_SECRET = 'some very secret text'
 
@@ -34,7 +35,16 @@ const db = mysql.createConnection({
         console.log(err,'dberr');}
     console.log('database connected')
 })
-
+const authMW = async (req, res, next) => {
+    
+    try {
+      const { userId } = await jwt.verify(token, TOKEN_SECRET)
+      req.user = userId
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
 // get all users
 
 app.get('/alluser', async function(req, res) {
@@ -68,7 +78,8 @@ app.get('/food', async function(req, res) {
             })
         }
     })
-})
+}) 
+
 // get specific type of food
 app.get('/food/:foodtype', async function(req, res) {
     let gFT = req.params.foodtype
@@ -118,10 +129,12 @@ app.post('/userregister', async function(req, res,next) {
     let fullName = req.body.fullname;
     let eMail = req.body.email;
     let pass = req.body.password;
+    let profilepic = "none";
+    
     const hashedPassword = await bcrypt.hash(pass, 12);
     var checkSql = `SELECT * FROM user WHERE email = '${eMail}'`;
-    let qr = `insert into user (fullname,email,password)
-                values ('${fullName}','${eMail}','${hashedPassword}')`;
+    let qr = `insert into user (fullname,email,password,profilepic)
+                values ('${fullName}','${eMail}','${hashedPassword}','${profilepic}')`;
                 
     console.log(qr,'qr')   
     db.query(checkSql,(err,result) => {
@@ -161,7 +174,7 @@ app.post('/userlogin', async function(req, res,next){
             }
             else {
                 let user = result[0]
-                console.log(user)
+                
                 
                 if (!user) {
                     res.json({
@@ -180,6 +193,8 @@ app.post('/userlogin', async function(req, res,next){
                             const token =  await jwt.sign({ userId: user.id }, TOKEN_SECRET, {
                                 expiresIn: '10h',
                               })
+                            console.log(token)
+                            
                             
                             res.cookie('auth', token, { httpOnly: true })
                             res.json({ data: user, token: token , message:"login succesful"});
@@ -193,10 +208,7 @@ app.post('/userlogin', async function(req, res,next){
                         
                       });
                     
-                    
                   }
-                
-                
             }
             
         }
@@ -207,21 +219,21 @@ app.post('/userlogin', async function(req, res,next){
 
 )
 
-
-
-
 //update single data
-app.put('/user/:id', async function (req, res) {
+app.post('/cart', async function (req, res) {
+    
+    
+    token = req.headers["authorization"]
+    const userid  = await jwt.verify(token, TOKEN_SECRET)
 
+    let Foodid = req.body.Foodid
+    let Userid = req.body.Userid
 
-    console.log(req.body,'updatedata');
-
-    let gID = req.params.id;
-    let fullName = req.body.fullname;
-    let eMail = req.body.email;
-    let pass = req.body.password;
-    let qr = `update user set fullname = '${fullName}', email = '${eMail}', password = '${pass}'
-                where id = ${gID}`
+    try{
+    
+    
+    let qr = `insert into Cart (Foodid,Userid)
+                values ('${Foodid}','${Userid}')`;
     
     db.query(qr,(err,result) => {
         if (err) {
@@ -232,10 +244,11 @@ app.put('/user/:id', async function (req, res) {
 
         })
 
-
     });
-
- 
+    }
+    catch (err) {
+        res.send({message: err})
+    }
 })
 
 // delete single data
@@ -252,6 +265,24 @@ app.delete('/user/:id',async function(req, res)  {
         res.send({
             message: 'data deleted'
         })
+    })
+})
+app.get('/usercart', async function(req, res) {
+
+    let id = req.query.id;
+    
+    let qr = `select * from Cart where UserId = '${id}'`;
+    
+    db.query(qr,(err,result) => {
+        if(err) {
+            console.log(err,'errs');
+        }
+        else {
+            res.send({
+                message: 'all data from cart',
+                data: result
+            })
+        } 
     })
 })
 
