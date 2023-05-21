@@ -30,11 +30,11 @@ export class SharedService {
     
   }
 
-  nextMessage(message: string) { 
-    this.loggedinuser.next(message)
+  nextMessage(something: any): void {
+    this.loggedinuser.next(something);
   }
-  changeCartContents(something:any) { 
-    this.usercart.next(something)
+  changeCartContents(cartData: any[]): void {
+    this.usercart.next(cartData);
   }
   changeUserInfo(something:any){
     this.userinfo.next(something)

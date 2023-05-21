@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAllUserData().subscribe((result) => {
       this.userlist = result.data
+      
       this.sharedService.sharedMessage.subscribe(message => this.loggedinuser = message)
     })
   }
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
         this.errormsg = "Wrong password, try again"
       }
       if (result.token) {
+        this.newMessage(result.data)
         localStorage.setItem("token", result.token);
         this.cookieService.set( 'auth', result.token );
         
@@ -50,9 +52,11 @@ export class LoginComponent implements OnInit {
         console.log(result)
         
         
-        this.newMessage(result.data)
+        
         
         this.route.navigate(['Products']);
+        
+        
       }
       else {
         this.errormsg = "No user with given credentials, try again"
@@ -65,7 +69,7 @@ export class LoginComponent implements OnInit {
     this.route.navigate(['Contact']);
   }
   newMessage(something:any) {
-    this.sharedService.nextMessage(something)
+    this.sharedService.changeUserInfo(something)
   }
 
 }

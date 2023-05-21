@@ -24,6 +24,7 @@ export class ProductsComponent implements OnInit {
  
   ngOnInit(): void {
     this.service.getAllFoodData().subscribe((result) => {
+      
       console.log(result,"result")
       this.foodData = result.data;
       this.originalData = result.data;
@@ -38,8 +39,9 @@ export class ProductsComponent implements OnInit {
       
     this.service.getAllCartData(this.userdata).subscribe((result) => {
         console.log(result,"userdata")
+        console.log(this.userdata)
         this.cartlist = result.data
-        
+        this.sharedService.changeCartContents(this.cartlist);
       })
     
       
@@ -92,6 +94,11 @@ export class ProductsComponent implements OnInit {
     window.scroll(0,0);
   }
   navigateToHome(){
+    this.route.navigate(['Home'])
+  }
+  logout(){
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
     this.route.navigate(['Home'])
   }
   navigateToProfile(){
